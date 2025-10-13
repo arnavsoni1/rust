@@ -585,8 +585,7 @@ impl<T: Idx> ChunkedBitSet<T> {
     }
 
     pub fn clear(&mut self) {
-        let domain_size = self.domain_size();
-        *self = ChunkedBitSet::new_empty(domain_size);
+        self.chunks.fill_with(|| Chunk::Zeros);
     }
 
     #[cfg(test)]
